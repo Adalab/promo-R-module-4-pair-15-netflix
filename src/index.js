@@ -1,5 +1,7 @@
-const express = require('express');
-const cors = require('cors');
+const express = require("express");
+const cors = require("cors");
+
+const movies = require("./data/movies.json");
 
 // create and config server
 const server = express();
@@ -11,4 +13,12 @@ const serverPort = 4000;
 server.listen(serverPort, () => {
   console.log(`Server listening at http://localhost:${serverPort}`);
 });
-console.log('holita');
+console.log("holita");
+
+server.get("/movies", (req, res) => {
+  console.log(req.query);
+  res.json({
+    success: "true",
+    movies: { movies },
+  });
+});
