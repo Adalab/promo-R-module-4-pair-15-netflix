@@ -16,9 +16,15 @@ server.listen(serverPort, () => {
 console.log("holita");
 
 server.get("/movies", (req, res) => {
-  console.log(req.query);
-  res.json({
-    success: "true",
-    movies: { movies },
-  });
+
+  const response = {
+    success: true,
+    movies: movies
+  };
+  res.json(response);
 });
+const staticServer = './src/public-react';
+server.use(express.static(staticServer));
+
+const staticServerImages = './src/public-movies-images';
+server.use(express.static(staticServerImages));

@@ -1,22 +1,20 @@
 [
-      {
-        "id": "1",
-        "title": "Gambita de dama",
-        "gender": "Drama",
-        "image": "https://via.placeholder.com/150"
-      },
-      {
-        "id": "2",
-        "title": "Friends",
-        "gender": "Comedia",
-        "image": "https://via.placeholder.com/150"
-      },
-
-      {
+    {
+      "id": "1",
+      "title": "Gambita de dama",
+      "gender": "Drama",
+      "image": "//localhost:4000/gambita-de-dama.jpg"
+    },
+    {
+      "id": "2",
+      "title": "Friends",
+      "gender": "Comedia",
+      "image": "//localhost:4000/friends.jpg"
+    },
+    {
         "id": "3",
-        "title": "Game of Thrones",
-        "gender": "Drama",
-        "image": "https://via.placeholder.com/150"
+        "title": "juego de tronos",
+        "gender": "Comedia",
+        "image": "//localhost:4000/juego-de-tronos.jpg"
       }
-    ]
-  
+  ]
