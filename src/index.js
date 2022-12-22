@@ -16,15 +16,23 @@ server.listen(serverPort, () => {
 console.log("holita");
 
 server.get("/movies", (req, res) => {
-
   const response = {
     success: true,
-    movies: movies
+    movies: movies,
   };
   res.json(response);
 });
-const staticServer = './src/public-react';
+
+server.get("/movie/:movieId", (req, res) => {
+  console.log(req.params);
+  console.log("holiiiis");
+  const findMovie = movies.find((movie) => movie.id === req.params.movieId);
+  console.log(findMovie);
+  res.json({}); //html
+});
+
+const staticServer = "./src/public-react";
 server.use(express.static(staticServer));
 
-const staticServerImages = './src/public-movies-images';
+const staticServerImages = "./src/public-movies-images";
 server.use(express.static(staticServerImages));
