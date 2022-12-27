@@ -2,11 +2,9 @@ const express = require("express");
 const cors = require("cors");
 
 // const movies = require("./data/movies.json");
-const Database = require ('better-sqlite3');
+const Database = require("better-sqlite3");
 
-const db = new Database('./src/data/movies.db', {verbose:console.log});
-
-
+const db = new Database("./src/data/movies.db", { verbose: console.log });
 
 // create and config server
 const server = express();
@@ -28,19 +26,15 @@ console.log("holita");
 //   res.json(response);
 // });
 server.get("/movies", (req, res) => {
-  const query = db.prepare('SELECT * FROM movies');
+  const query = db.prepare("SELECT * FROM movies");
   const list = query.all();
-  console.log(list);
+  //console.log(list);
   const response = {
-        success: true,
-        movies: list
-      };
-      res.json(response);
-    });
-
-
-
-
+    success: true,
+    movies: list,
+  };
+  res.json(response);
+});
 
 // server.get("/movie/:movieId", (req, res) => {
 //   console.log(req.params);
@@ -49,6 +43,18 @@ server.get("/movies", (req, res) => {
 //   console.log(findMovie);
 //   res.json({}); //html
 // });
+
+server.post("/sign-up", (req, res) => {
+  console.log(req.body);
+  const query = db.prepare("INSERT INTO users (email, password) VALUES (?,?)");
+  const result = query.run(req.body.email, req.body.password);
+  console.log(result);
+  res.json(result);
+  // {
+  //   "success": true,
+  //   "userId": res.lastInsertRowid
+  // }
+});
 
 const staticServer = "./src/public-react";
 server.use(express.static(staticServer));
