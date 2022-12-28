@@ -44,18 +44,54 @@ server.get("/movies", (req, res) => {
 //   res.json({}); //html
 // });
 
+//sin-up
 server.post("/sign-up", (req, res) => {
   console.log(req.body);
   const query = db.prepare("INSERT INTO users (email, password) VALUES (?,?)");
   const result = query.run(req.body.email, req.body.password);
   console.log(result);
-  res.json(result);
-  // {
-  //   "success": true,
-  //   "userId": res.lastInsertRowid
-  // }
+  const resultSignUp =  {
+      "success": true,
+      "userId": result.lastInsertRowid
+    }
+  res.json(resultSignUp);
+ 
 });
 
+//sin-in
+server.post("/sign-in", (req, res) => {
+  console.log(req.body);
+  const query = db.prepare("SELECT * FROM users WHERE email = ? AND password = ?");
+  const result = query.get(req.body.email, req.body.password);
+  // if ( result = !undefine {  const resultSignIp =  {
+  //   "success": true,
+  //   "userId": result.id
+  // }
+  // console.log(result);
+  // res.json(resultSignIp);})
+  // else {
+  //   result = undefine {  const resultSignIp =  {
+  //     "success": false,
+  //     "userId": "error tremendo"
+  //   }
+  //   console.log(result);
+  //   res.json(resultSignIp);})
+  // }
+ 
+// hacer un if que diga si result es undefine la repuesta sera succes false y un sms error,m pero si result es ok, succes sera true y userid =
+});
+// una vez logueadas que peliculas te gustan
+// server.get("/user/movies", (req, res) => {
+//   console.log(req.headers)
+//   const query = db.prepare("SELECT * FROM rel_movies_user");
+//   const list = query.all();
+//   console.log(list);
+//   const response = {
+//     success: true,
+//     movies: list,
+//   };
+//   res.json(response);
+// });
 const staticServer = "./src/public-react";
 server.use(express.static(staticServer));
 
