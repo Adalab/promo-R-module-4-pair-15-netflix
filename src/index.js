@@ -50,18 +50,19 @@ server.post("/sign-up", (req, res) => {
   const query = db.prepare("INSERT INTO users (email, password) VALUES (?,?)");
   const result = query.run(req.body.email, req.body.password);
   console.log(result);
-  const resultSignUp =  {
-      "success": true,
-      "userId": result.lastInsertRowid
-    }
+  const resultSignUp = {
+    success: true,
+    userId: result.lastInsertRowid,
+  };
   res.json(resultSignUp);
- 
 });
 
 //sin-in
 server.post("/sign-in", (req, res) => {
   console.log(req.body);
-  const query = db.prepare("SELECT * FROM users WHERE email = ? AND password = ?");
+  const query = db.prepare(
+    "SELECT * FROM users WHERE email = ? AND password = ?"
+  );
   const result = query.get(req.body.email, req.body.password);
   // if ( result = !undefine {  const resultSignIp =  {
   //   "success": true,
@@ -77,8 +78,8 @@ server.post("/sign-in", (req, res) => {
   //   console.log(result);
   //   res.json(resultSignIp);})
   // }
- 
-// hacer un if que diga si result es undefine la repuesta sera succes false y un sms error,m pero si result es ok, succes sera true y userid =
+
+  // hacer un if que diga si result es undefine la repuesta sera succes false y un sms error,m pero si result es ok, succes sera true y userid =
 });
 // una vez logueadas que peliculas te gustan
 // server.get("/user/movies", (req, res) => {
